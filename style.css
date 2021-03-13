@@ -1,0 +1,40 @@
+body
+{
+    background-image: url("https://images.lacucinaitaliana.it/wp-content/uploads/2021/02/05103142/2021-anno-fao-frutta-e-verdura.jpg");
+    background-repeat: repeat-y;
+    background-size: 100%;
+    height: 100%;
+}
+
+#page-div
+{
+    position: relative;
+    min-height: 100vh;
+}
+
+#main-div 
+{
+    padding-bottom: 10rem;    /* Footer height */
+}
+
+#footer 
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10rem;            /* Footer height */
+}
+
+#carouselMainDiv
+{
+    width: 1000px;
+    height: 666px;
+    padding: 7px;
+    background-color: white;
+}
+
+.carousel-item img 
+{
+    width: 985px;
+    height: 651px;
+}
