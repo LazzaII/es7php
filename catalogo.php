@@ -26,7 +26,7 @@
                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalogo</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="catalogo.php">Home</a></li>
+                                <li><a class="dropdown-item" href="catalogo.php">Catalogo</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="catalogo.php?cat=frutta">Frutta</a></li>
                                 <li><a class="dropdown-item" href="catalogo.php?cat=verdura">Verdura</a></li>

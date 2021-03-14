@@ -1,6 +1,6 @@
 <?php
 
-    if (isset($_POST["accesso"])) header("Location: ../login.php"); //Controllo se dalla pagina home (index.php) preme su 'Accedi' per accedere all'account
+    if (isset($_POST["accesso"])) header("Location: login.php"); //Controllo se dalla pagina home (index.php) preme su 'Accedi' per accedere all'account
     elseif (isset($_POST["ricerca"])) //Controllo se da dalla pagina home (index.php) ricerca un prodotto dalla barra di ricerca
     {
         header("Location: ../ricerca.php");
