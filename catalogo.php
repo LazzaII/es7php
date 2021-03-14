@@ -26,6 +26,8 @@
                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalogo</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="catalogo.php">Home</a></li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="catalogo.php?cat=frutta">Frutta</a></li>
                                 <li><a class="dropdown-item" href="catalogo.php?cat=verdura">Verdura</a></li>
                                 <li><hr class="dropdown-divider"></li>
@@ -48,64 +50,69 @@
         <br><br> 
         <div id="main-div">
             <div class="bg-light w-75 m-auto p-4">
-                <center>
-                    <table class="table table-borderless">
-                    <?php
-                        require_once "included-files/db-credentials.inc.php";
+                <h3>Catalogo del mercato</h3>
+                <?php
+                    require_once "included-files/db-credentials.inc.php";
 
-                        $prodotti = array();
-
-                        try 
-                        {
-                            //connessione a DB
-                            $connection = new PDO("mysql:host=$ES7PHP_HOST;dbname=$ES7PHP_DB", $ES7PHP_USER, $ES7PHP_PASS);
-
-                            foreach($connection->query('SELECT * FROM prodotto') as $row) 
-                                array_push($prodotti, array("id" => $row["id"], "nome" => $row["nome"], "prezzo" => $row["prezzo"], "urlImg" => $row["urlImg"])); 
-
-                            //chiusura connessione
-                            $connection = null;
-                        } 
-                        catch (PDOException $e)
-                        {
-                            print "Error!: " . $e->getMessage() . "<br/>";
-                            die();
-                        }
-
-                        $rowSize = 4;
-                        for ($i = 0; $i < count($prodotti); $i++) 
-                        {
-                            if($i % $rowSize == 0)
-                                echo "<tr>"; 
-                        
-                            echo "<td>
-                                    <div class=\"border border-2 text-center m-auto p-2\" style=\"width: 300px; height: 300px\" onclick=\"window.location = 'pagina-prodotto.php?id=" . $prodotti[$i]["id"] . "'\">                       
-                                        <img src=\"" . $prodotti[$i]["urlImg"] . "\" alt=\"\" style=\"width: 200px; height: 200px\">
-                                        <br>"
-                                        . $prodotti[$i]["nome"] .
-                                        "<br>"
-                                        . $prodotti[$i]["prezzo"] . "/Kg
-                                    </div>
-                                </td>";
-
-                            if($i % $rowSize == $rowSize - 1)
-                                echo "</tr>";
-                        }
+                    $prodotti = array();
+                    try 
+                    {
+                        //connessione a DB
+                        $connection = new PDO("mysql:host=$ES7PHP_HOST;dbname=$ES7PHP_DB", $ES7PHP_USER, $ES7PHP_PASS);
+                        $query = 'SELECT * FROM prodotto';
 
                         //entrato in questa pagina cercando un prodotto
-            /*             if(isset($_GET["prodotto_ricercato"]))
+                        if(isset($_GET["prodotto_ricercato"]))
                         {
-                            
+                            echo '<p class="mb-1">Risultati della ricerca per <b>' . $_GET["prodotto_ricercato"] . '</b></p>';
+                            $query .= ' WHERE UPPER(nome) = UPPER("' . $_GET["prodotto_ricercato"] . '");';
                         }
                         else if(isset($_GET["cat"]))    //entrato in questa pagina cercando una categoria
                         {
-                            
+                            echo '<p class="mb-1">Risultati della categoria <b>' . $_GET["cat"] . '</b></p>';
+                            $query .= ' WHERE UPPER(tipo) = UPPER("' . $_GET["cat"] . '");';
                         }
-            */
+                        else    //entrato in questa pagina cercando la home del catalogo
+                        {
+                            $query .= ';';
+                        }
+                        
+                        foreach($connection->query($query) as $row) 
+                            array_push($prodotti, array("id" => $row["id"], "nome" => $row["nome"], "prezzo" => $row["prezzo"], "urlImg" => $row["urlImg"])); 
+
+                        //chiusura connessione
                         $connection = null;
-                    ?>
-                    </table>
-                </center>
+                    } 
+                    catch (PDOException $e)
+                    {
+                        print "Error!: " . $e->getMessage() . "<br/>";
+                        die();
+                    }
+
+                    echo '<table class="table table-borderless"><center>';
+
+                    $rowSize = 4;
+                    for ($i = 0; $i < count($prodotti); $i++) 
+                    {
+                        if($i % $rowSize == 0)
+                            echo "<tr>"; 
+                    
+                        echo "<td style=\"padding: 20px;\">
+                                <div class=\"border border-2 text-center m-auto p-2\" style=\"width: 300px; height: 300px\" onclick=\"window.location = 'pagina-prodotto.php?id=" . $prodotti[$i]["id"] . "'\">                       
+                                    <img src=\"" . $prodotti[$i]["urlImg"] . "\" alt=\"\" style=\"width: 230px; height: 230px; object-fit: cover;\">
+                                    <br><b>"
+                                    . $prodotti[$i]["nome"] .
+                                    "</b><br>"
+                                    . $prodotti[$i]["prezzo"] . "/Kg
+                                </div>
+                            </td>";
+
+                        if($i % $rowSize == $rowSize - 1)
+                            echo "</tr>";
+                    }
+
+                    echo '</center></table>';
+                ?>
             </div>
             <br><br>
         </div>

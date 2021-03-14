@@ -26,6 +26,8 @@
                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalogo</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="catalogo.php">Home</a></li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="catalogo.php?cat=frutta">Frutta</a></li>
                                 <li><a class="dropdown-item" href="catalogo.php?cat=verdura">Verdura</a></li>
                                 <li><hr class="dropdown-divider"></li>
@@ -48,6 +50,7 @@
         <br><br>
         <div id="main-div">
             <div class="bg-light w-50 m-auto p-4">
+                <h3>Storia</h3>
                 <p>
                     Le sue origini risalgono agli anni venti del XX secolo, quando l'amministrazione comunale si rese conto dell'insufficienza 
                     del vecchio mercato di Sant'Ambrogio, peraltro impossibile da ampliare perché in pieno centro cittadino.
