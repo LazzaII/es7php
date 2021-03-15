@@ -22,11 +22,20 @@ CREATE TABLE prodotto (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE utente (
+CREATE TABLE utenti (
     id INT NOT NULL AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
     cognome VARCHAR(45) NOT NULL,  
     email VARCHAR(45) NOT NULL,
     HASHpassword VARCHAR(512) NOT NULL,
     PRIMARY KEY (id)
+);
+
+CREATE TABLE ordini (
+    id INT NOT NULL AUTO_INCREMENT,
+    id-utenti INT NOT NULL,
+    id-prodotto INT NOT NULL,
+    quantita INT NOT NULL,
+    data DATE NOT NULL,
+    PRIMARY KEY (id, id-utenti, id-prodotto, data)
 );

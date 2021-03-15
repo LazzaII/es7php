@@ -44,7 +44,7 @@
                             <?php //Controllo se è loggato nell'account 
                                 session_start(); 
                                 if(isset($_SESSION["logged-in"])) 
-                                    echo '<button class="btn btn-outline-warning" type="submit" name="login">Account</button>';  
+                                    echo '<button class="btn btn-outline-warning" type="submit" name="area-privata">Account</button>';  
                                 else
                                     echo '<button class="btn btn-outline-warning" type="submit" name="accesso">Accedi</button>';
                             ?>
@@ -72,7 +72,7 @@
                     $connection = new PDO("mysql:host=$ES7PHP_HOST;dbname=$ES7PHP_DB", $ES7PHP_USER, $ES7PHP_PASS);
                     
                     foreach($connection->query('SELECT fornitore.nome AS nomeFornitore, prodotto.* FROM prodotto JOIN fornitore ON prodotto.fornitore = fornitore.id WHERE prodotto.id = ' . $_GET["id"]) as $row) 
-                        array_push($infoProdotto, array("nome" => $row["nome"], "nomeFornitore" => $row["nomeFornitore"], "prezzo" => $row["prezzo"], "disponibilita" => $row["disponibilita"], "urlImg" => $row["urlImg"])); 
+                        array_push($infoProdotto, array("nome" => $row["nome"], "nomeFornitore" => $row["nomeFornitore"], "prezzo" => $row["prezzo"], "disponibilita" => $row["disponibilita"], "urlImg" => $row["urlImg"], "tipo" => $row["tipo"])); 
 
                     //sostituisce se stesso con solo il primo elemento
                     $infoProdotto = $infoProdotto[0];
@@ -86,13 +86,33 @@
                     die();
                 }
 
+                if(strcmp($infoProdotto["tipo"], "Frutta") == 0 OR strcmp($infoProdotto["tipo"], "Verdura") == 0) {
+                    $um = "Kg"; 
+                    $prezzo = "€/Kg";
+                    $min = 0.1;
+                    $max = $infoProdotto["disponibilita"];
+                    $step = 0.1;
+                }else {
+                    $um = "pezzi";
+                    $prezzo = "pezzi";
+                    $min = 1;
+                    $max = $infoProdotto["disponibilita"];
+                    $step = 1;
+                }
+
                 echo "<img src=\"" . $infoProdotto["urlImg"] . "\" alt=\"\" style=\"width: 230px; height: 230px; object-fit: cover;\">
                     <br><br>
                     <b>" . $infoProdotto["nome"] . "</b><br>
                     Fornitore: " . $infoProdotto["nomeFornitore"] . "<br>
-                    Prezzo: " . $infoProdotto["prezzo"] . "€/Kg <br>
-                    Disponibilita: " . $infoProdotto["disponibilita"] . "<br><br>
-                    <button class=\"btn btn-primary\">Aggiungi al carrello</button>";
+                    Prezzo: " . $infoProdotto["prezzo"] . "$prezzo <br>
+                    Disponibilita: " . $infoProdotto["disponibilita"] . " $um <br><br>
+                    <form action='client-account/switch.php' method='POST'>
+                        <label for='qta-input'> Inserisci la quantità in <b>$um</b> di prodotto richiesto</label>
+                        <input name='qta-input' type='number' placeholder='ex. 10' step='$step' min='$min' max='$max'> &nbsp; 
+                        <button class=\"btn btn-primary\" type='submit' name='add-to-cart'>Aggiungi al carrello</button>
+                    </form>";
+
+                $_SESSION['infoProdotto'] = $infoProdotto;
             ?>
             </div>
             <br><br>

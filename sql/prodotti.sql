@@ -14,4 +14,4 @@ VALUES
 (11, "Martello", 1, 11.31, 25, "Utensili", "https://brico-casa.it/sites/default/files/product_images/380153/main_martello-tedesco-manico-in-legno-300-gr-12.jpg"),
 (12, "Rastrello", 3, 10.90, 15, "Utensili", "https://www.dadolo.com/25823-large_default/stocker-2265-rastrello-a-12-denti-con-manico.jpg"),
 (13, "Vaso 45x45x30cm", 0, 29, 20, "Utensili", "https://shop.arredogiardini.it/WebRoot/whitelabel_it/Shops/990449425/5C63/FC84/B51D/905A/469C/C0A8/1911/EF11/vaso_grande_tondo_martellinato.png"),
-(14, "Vaso 100x40x40cm", 2, 0.18, 30, "Utensili", "https://images-na.ssl-images-amazon.com/images/I/615cVqYmmLL._AC_SX522_.jpg");
+(14, "Vaso 100x40x40cm", 2, 45, 30, "Utensili", "https://images-na.ssl-images-amazon.com/images/I/615cVqYmmLL._AC_SX522_.jpg");

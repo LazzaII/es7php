@@ -44,7 +44,7 @@
                             <?php //Controllo se è loggato nell'account 
                                 session_start(); 
                                 if(isset($_SESSION["logged-in"])) 
-                                    echo '<button class="btn btn-outline-warning" type="submit" name="login">Account</button>';  
+                                    echo '<button class="btn btn-outline-warning" type="submit" name="area-privata">Account</button>';  
                                 else
                                     echo '<button class="btn btn-outline-warning" type="submit" name="accesso">Accedi</button>';
                             ?>

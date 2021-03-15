@@ -44,7 +44,7 @@
                             <?php //Controllo se è loggato nell'account 
                                 session_start(); 
                                 if(isset($_SESSION["logged-in"])) 
-                                    echo '<button class="btn btn-outline-warning" type="submit" name="login">Account</button>';  
+                                    echo '<button class="btn btn-outline-warning" type="submit" name="area-privata">Account</button>';  
                                 else
                                     echo '<button class="btn btn-outline-warning" type="submit" name="accesso">Accedi</button>';
                             ?>
@@ -73,7 +73,7 @@
                             echo '<p class="mb-1">Risultati della ricerca per <b>' . $_GET["prodotto_ricercato"] . '</b></p>';
                             $query .= ' WHERE UPPER(nome) LIKE UPPER("%' . $_GET["prodotto_ricercato"] . '%");';
                         }
-                        else if(isset($_GET["cat"]))    //entrato in questa pagina cercando una categoria
+                        elseif(isset($_GET["cat"]))    //entrato in questa pagina cercando una categoria
                         {
                             echo '<p class="mb-1">Risultati della categoria <b>' . $_GET["cat"] . '</b></p>';
                             $query .= ' WHERE UPPER(tipo) = UPPER("' . $_GET["cat"] . '");';
@@ -84,7 +84,7 @@
                         }
                         
                         foreach($connection->query($query) as $row) 
-                            array_push($prodotti, array("id" => $row["id"], "nome" => $row["nome"], "prezzo" => $row["prezzo"], "urlImg" => $row["urlImg"])); 
+                            array_push($prodotti, array("id" => $row["id"], "nome" => $row["nome"], "prezzo" => $row["prezzo"], "urlImg" => $row["urlImg"], "tipo" => $row["tipo"])); 
 
                         //chiusura connessione
                         $connection = null;
@@ -100,6 +100,13 @@
                     $rowSize = 4;
                     for ($i = 0; $i < count($prodotti); $i++) 
                     {
+
+                        if(strcmp($prodotti[$i]["tipo"], "Frutta") == 0 OR strcmp($prodotti[$i]["tipo"], "Verdura") == 0) {
+                            $um = "€/al Kg"; 
+                            
+                        }else {
+                            $um = "€/al pezzo";
+                        }
                         if($i % $rowSize == 0)
                             echo "<tr>"; 
                     
@@ -109,7 +116,7 @@
                                     <br><b>"
                                     . $prodotti[$i]["nome"] .
                                     "</b><br>"
-                                    . $prodotti[$i]["prezzo"] . "€/Kg
+                                    . $prodotti[$i]["prezzo"] . $um ."
                                 </div>
                             </td>";
 

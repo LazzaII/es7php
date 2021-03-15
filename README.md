@@ -13,7 +13,7 @@
 
 ## Informazioni Generali
 
-> Il progetto è un sito di e-commerce senza la parte relativa la pagamento
+> Il progetto è un sito di e-commerce senza la parte relativa al pagamento
 
 ## Tecnologie utilizzate
 

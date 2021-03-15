@@ -14,37 +14,37 @@
         <div id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href=".">Mercato ortofrutticolo Novoli</a>&nbsp;
+                    <a class="navbar-brand" href="../index.php">Mercato ortofrutticolo Novoli</a>&nbsp;
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href=".">Home</a>
+                            <a class="nav-link" aria-current="page" href="../index.php">Home</a>
                             </li>
                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalogo</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="catalogo.php">Home</a></li>
+                                <li><a class="dropdown-item" href="../catalogo.php">Home</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="catalogo.php?cat=frutta">Frutta</a></li>
-                                <li><a class="dropdown-item" href="catalogo.php?cat=verdura">Verdura</a></li>
+                                <li><a class="dropdown-item" href="../catalogo.php?cat=frutta">Frutta</a></li>
+                                <li><a class="dropdown-item" href="../catalogo.php?cat=verdura">Verdura</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="catalogo.php?cat=utensili">Utensili</a></li>
+                                <li><a class="dropdown-item" href="../catalogo.php?cat=utensili">Utensili</a></li>
                             </ul>
                             </li>
                             <li class="nav-item">
                             <a class="nav-link " href="storia.php" >Storia</a>
                             </li>
                         </ul>
-                        <form class="d-flex" action="client-account/switch.php" method="POST">
+                        <form class="d-flex" action="switch.php" method="POST">
                             <input class="form-control me-2" type="search" placeholder="Cerca prodotti" aria-label="Cerca" name="prodotto_ricercato">
-                            <button class="btn btn-outline-success" type="submit">Cerca</button>&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-outline-success" type="submit" name="ricerca">Cerca</button>&nbsp;&nbsp;&nbsp;
                             <?php //Controllo se è loggato nell'account 
                                 session_start(); 
                                 if(isset($_SESSION["logged-in"])) 
-                                    echo '<button class="btn btn-outline-warning" type="submit" name="login">Account</button>';  
+                                    echo '<button class="btn btn-outline-warning" type="submit" name="area-privata">Account</button>';  
                                 else
                                     echo '<button class="btn btn-outline-warning" type="submit" name="accesso">Accedi</button>';
                             ?>
@@ -55,7 +55,7 @@
         </div>
         <br>
         <div id="main-div">
-            <form action="login.php" method="POST">
+            <form action="switch.php" method="POST">
                 <div class="card card-box bg-light text-dark w-25 p-3 m-auto mt-5">
                     <fieldset>
                         <legend>Log-in</legend>
@@ -76,7 +76,17 @@
                         <br>
                         <div class="text-center">
                             <label for="text">Se non sei registrato premi <a href="register.php">qui</a></label>
-                        </div>            
+                        <br><br>
+                        <?php
+                            if(isset($_SESSION["error-login"]))
+                            {
+                                echo '<div class="alert alert-danger text-center m-auto" role="alert" style="width: 50%;">
+                                        <strong>Errore: </strong> l \'email o la password sono incorrette!
+                                    </div>';
+                            }
+                            unset($_SESSION["error-login"]);
+                        ?>           
+                        </div> 
                     </fieldset>
                 </div>
             </form>

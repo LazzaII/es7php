@@ -40,11 +40,11 @@
                         </ul>
                         <form class="d-flex" action="client-account/switch.php" method="POST">
                             <input class="form-control me-2" type="search" placeholder="Cerca prodotti" aria-label="Cerca" name="prodotto_ricercato">
-                            <button class="btn btn-outline-success" type="submit">Cerca</button>&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-outline-success" type="submit" name="ricerca">Cerca</button>&nbsp;&nbsp;&nbsp;
                             <?php //Controllo se è loggato nell'account 
                                 session_start(); 
                                 if(isset($_SESSION["logged-in"])) 
-                                    echo '<button class="btn btn-outline-warning" type="submit" name="login>Account</button>';  
+                                    echo '<button class="btn btn-outline-warning" type="submit" name="area-privata">Account</button>';  
                                 else
                                     echo '<button class="btn btn-outline-warning" type="submit" name="accesso">Accedi</button>';
                             ?>
