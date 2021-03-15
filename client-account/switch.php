@@ -1,32 +1,37 @@
 <?php
 
-    if (isset($_POST["accesso"])) header("Location: login.php"); //Controllo se dalla pagina home (index.php) preme su 'Accedi' per accedere all'account
-    elseif (isset($_POST["ricerca"])) //Controllo se da dalla pagina home (index.php) ricerca un prodotto dalla barra di ricerca
+    if (isset($_POST["accesso"]))       //Controllo se dalla pagina home (index.php) preme su 'Accedi' per accedere all'account -> vai a pagina di login (login.php)
     {
-        header("Location: ../ricerca.php");
-    } 
-    elseif (isset($_POST["login"])) //LOGIN
+        header("Location: login.php");
+    }
+    else if (isset($_POST["ricerca"]))   //Controllo se da dalla pagina home (index.php) ricerca un prodotto dalla barra di ricerca -> apri catalogo.php con la stringa di ricerca come parametro GET 
     {
-        try {
-            
+        header("Location: ../catalogo.php?prodotto_ricercato=" . $_POST["prodotto_ricercato"]);
+    }
+    else if (isset($_POST["login"]))     //Controllo se dalla pagina home (index.php) preme su 'Account' per vedere le info dell'account -> apri account.php
+    {                                       //No aspè non c'ho capito una sega
+        try 
+        {
             //connessione al db
             $connection = new PDO("mysql:host=$ES7PHP_HOST;dbname=$ES7PHP_DB", $ES7PHP_USER, $ES7PHP_PASS);
 
             //recupero info dal form
             $email = $_POST["input-email"];
     
-            $ris = $connection->query("SELECT HASHpassword FROM utenti WHERE email = $email");
+            $hashPass = $connection->query('SELECT HASHpassword FROM utenti WHERE email = "' . $email . '";');
 
             //chiusura connessione
             $connection = null;
 
-        } catch (PDOException $ex) {
+        }
+        catch (PDOException $ex) 
+        {
             print "Error!: " . $e->getMessage() . "<br/>";
             die();
         }
 
-        //controllo se l'email coincide ad un account
-        if(count($ris) == 0)
+        //controllo se l'email coincide o no ad un account
+        if(count($hashPass) == 0)    //0 righe = nessun match = non esiste un account con questa email
         {
             $output = '<!DOCTYPE html>
                         <html lang="it">
@@ -71,10 +76,10 @@
 
             echo $output;
         }
-        else
+        else        //esiste un account con questa email
         {
             //controllo se la psw coincide
-            if(password_verify($_POST["psw"] ,$ris[0]))
+            if(password_verify($_POST["psw"] , $hashPass[0]))
             {
                 session_start();
                 $_SESSION['logged-in'] = true;
@@ -128,11 +133,11 @@
             }
         }
     }
-    elseif (isset($_POST["register"])) //REGISTRAZIONE
+    else if (isset($_POST["register"]))         //l'utente vuole registrarsi
     {
 
-        try {
-            
+        try 
+        {    
             //connessione al db
             $connection = new PDO("mysql:host=$ES7PHP_HOST;dbname=$ES7PHP_DB", $ES7PHP_USER, $ES7PHP_PASS);
 
@@ -142,10 +147,10 @@
             $email = $_POST["input-email"];
             $psw = password_hash($_POST["input-psw"], PASSWORD_DEFAULT);
         
-            //controllo se l'email esiste già
-            if(count($connection->query("SELECT id FROM utenti WHERE email = $email")) == 0)
+            //controllo se l'email esiste già -> no = inserisci le info del nuovo utente, sì = errore
+            if(count($connection->query('SELECT id FROM utenti WHERE email = "' . $email . '";')) == 0)
             {
-                $connection->query("INSERT INTO utenti (nome, cognome, email, psw) VALUE ($nome, $cognome, $email, $psw)");
+                $connection->query("INSERT INTO utenti (nome, cognome, email, psw) VALUE ('$nome', '$cognome', '$email', '$psw');");
             }
             else 
             {

@@ -10,32 +10,34 @@
 </head>
 <body>
     <form action="login.php" method="POST">
-        <fieldset>
-            <legend>Registrazione</legend>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="input-nome" name="input-nome" placeholder="Mario" required>
-                <label for="floatingInput">Nome</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="input-cognome" name="input-cognome"  placeholder="Rosso" required>
-                <label for="floatingInput">Cognome</label>
-            </div>
+        <div class="card card-box bg-light text-dark w-25 p-3 m-auto mt-5">
+            <fieldset>
+                <legend>Registrazione</legend>
+                <br><br>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="input-nome" name="input-nome" placeholder="Mario" required>
+                    <label for="floatingInput">Nome</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="input-cognome" name="input-cognome"  placeholder="Rosso" required>
+                    <label for="floatingInput">Cognome</label>
+                </div>
 
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="input-email" name="input-email" placeholder="name@example.com" required>
-                <label for="floatingInput">Email</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="input-psw" name="input-psw" placeholder="Password" required>
-                <label for="floatingPassword">Password</label>
-            </div>  
-            <br>         
-            <div>
-                <input type="reset" value="Annulla" class="btn btn-secondary">
-                <input type="submit" value="Accedi" class="btn btn-primary" name="register">
-            </div>
-                  
-        </fieldset>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="input-email" name="input-email" placeholder="name@example.com" required>
+                    <label for="floatingInput">Email</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="input-psw" name="input-psw" placeholder="Password" required>
+                    <label for="floatingPassword">Password</label>
+                </div>  
+                <br>         
+                <div class="text-center">
+                    <input type="reset" value="Annulla" class="btn btn-secondary">
+                    <input type="submit" value="Registrati" class="btn btn-primary" name="register">
+                </div>  
+            </fieldset>
+        </div>
     </form>
 </body>
 </html>

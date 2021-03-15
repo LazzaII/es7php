@@ -55,13 +55,11 @@
         </div>
         <br>
         <div id="main-div">
-
-        <form action="switch.php" method="POST">
-            <input type="text" name="actual-password" placeholder="password attuale">
-            <input type="text" name="new-password" placeholder="nuova password">
-            <input type="submit" name="modify-credentials" value="Modifica le credenziali">
-        </form>
-
+            <form action="switch.php" method="POST">
+                <input type="text" name="actual-password" placeholder="password attuale">
+                <input type="text" name="new-password" placeholder="nuova password">
+                <input type="submit" name="modify-credentials" value="Modifica le credenziali">
+            </form>
         </div>
         <footer id="footer" class="pt-4 mt-3 px-5 border-top bg-light" style="flex-shrink: none;">
             <div class="row">

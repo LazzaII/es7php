@@ -11,27 +11,29 @@
 </head>
 <body>
     <form action="login.php" method="POST">
-        <fieldset>
-            <legend>Log-in</legend>
-
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="input-email" name="input-email" placeholder="name@example.com" required>
-                <label for="floatingInput">Email</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="input-psw" name="input-psw"placeholder="Password" required>
-                <label for="floatingPassword">Password</label>
-            </div>  
-            <br>         
-            <div>
-                <input type="reset" value="Annulla" class="btn btn-secondary">
-                <input type="submit" value="Accedi" class="btn btn-primary" name="login">
-            </div>
-            <br>
-            <div>
-                <label for="text">Se non sei registrato premi <a href="register.php">qui</a></label>
-            </div>            
-        </fieldset>
+        <div class="card card-box bg-light text-dark w-25 p-3 m-auto mt-5">
+            <fieldset>
+                <legend>Log-in</legend>
+                <br><br>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="input-email" name="input-email" placeholder="name@example.com" required>
+                    <label for="floatingInput">Email</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="input-psw" name="input-psw"placeholder="Password" required>
+                    <label for="floatingPassword">Password</label>
+                </div>  
+                <br>         
+                <div class="text-center">
+                    <input type="reset" value="Annulla" class="btn btn-secondary">
+                    <input type="submit" value="Accedi" class="btn btn-primary" name="login">
+                </div>
+                <br>
+                <div class="text-center">
+                    <label for="text">Se non sei registrato premi <a href="register.php">qui</a></label>
+                </div>            
+            </fieldset>
+        </div>
     </form>
 </body>
 </html>

@@ -71,7 +71,7 @@
                         if(isset($_GET["prodotto_ricercato"]))
                         {
                             echo '<p class="mb-1">Risultati della ricerca per <b>' . $_GET["prodotto_ricercato"] . '</b></p>';
-                            $query .= ' WHERE UPPER(nome) = UPPER("' . $_GET["prodotto_ricercato"] . '");';
+                            $query .= ' WHERE UPPER(nome) LIKE UPPER("%' . $_GET["prodotto_ricercato"] . '%");';
                         }
                         else if(isset($_GET["cat"]))    //entrato in questa pagina cercando una categoria
                         {
