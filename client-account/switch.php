@@ -135,7 +135,6 @@
     }
     else if (isset($_POST["register"]))         //l'utente vuole registrarsi
     {
-
         try 
         {    
             //connessione al db
