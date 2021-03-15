@@ -79,9 +79,8 @@
                         <b>Storico ordini</b>
                         <ul class="list-group">
                             <li class="list-group-item">4 kg di carote</li>
-                            <li class="list-group-item">5 kg di finocchiacci</li>
+                            <li class="list-group-item">5 kg di finocchio</li>
                             <li class="list-group-item">1 etto di prosciutto</li>
-                            <li class="list-group-item">una fetta di culo</li>
                         </ul>
                     </div>
                 </div>
